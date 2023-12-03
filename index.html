@@ -1,0 +1,51 @@
+
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenêtre de Dialogue</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+
+<div id="form-box">
+    <form onsubmit="sendMessage(); return false">
+        <div>
+            <label for="nom">Nom </label>
+            <input type="text" id="nom" name="nom" required>
+        </div>
+        <div>
+            <label for="message">Message </label>
+            <textarea id="message" cols="40" rows="5" name="message" required></textarea>
+        </div>
+        <input type="submit" value="Valider">
+    </form>
+    
+</div>
+<div id="msj_container" >
+    <script>
+        function showMessage(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'msj.php', true);
+            xhr.onload = function () {
+                document.getElementById('messages').innerHTML = xhr.responseText;
+            };
+            xhr.send();
+
+        }
+        showMessage();  
+        setInterval(showMessage, 2000);
+    </script>
+    <div id="messages"></div>
+</div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
